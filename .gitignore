@@ -1,0 +1,9 @@
+# Always ignore the following directories
+doc/
+include/
+lib/
+
+# Always ignore output files
+*.o
+*.a
+a.out
