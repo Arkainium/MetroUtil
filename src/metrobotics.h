@@ -27,7 +27,9 @@
 
 /**
  * \file    "metrobotics.h"
+ *
  * \brief   The all-inclusive header file for this utility library.
+ *
  * \details It is sufficient to include just this one header file into your source code
  *          to gain access to all of the library's constituent classes and functions.
  */
@@ -38,7 +40,9 @@
 
 /**
  * \namespace  metrobotics
+ *
  * \brief      Contains all of the library's classes and functions.
+ *
  * \details    The namespace under which all of the library's classes and functions are defined.
  */
 namespace metrobotics
