@@ -29,7 +29,9 @@ $(OUTPUT): $(SOURCES) $(HEADERS)
 # Compile the library's sub-components
 compile:
 	@echo "Compiling the library's sub-components."
-	$(foreach subsystem, $(SUBSYSTEMS), @$(MAKE) -e --directory="$(subsystem)")
+	@for subsystem in $(SUBSYSTEMS); do \
+		$(MAKE) -e --directory="$$subsystem"; \
+	done
 
 
 # Link the library's sub-components into a single library file
@@ -62,7 +64,9 @@ install: $(OUTPUT)
 		exit 1; \
 	fi
 # Install all of the library's sub-components
-	$(foreach subsystem, $(SUBSYSTEMS), @$(MAKE) -e --directory="$(subsystem)" install)
+	@for subsystem in $(SUBSYSTEMS); do \
+		$(MAKE) -e --directory="$$subsystem" install; \
+	done
 # Install the all-inclusive header file
 	@cp src/metrobotics.h "$(INSTALLDIR)/include"
 # Install the all-inclusive library file
@@ -83,5 +87,7 @@ docs:
 clean:
 	@echo "Removing all unnecessary output files."
 	rm -rf $(OUTPUT) $(OBJECTS) $(LIBRARIES)
-	$(foreach subsystem, $(SUBSYSTEMS), @$(MAKE) -e --directory="$(subsystem)" clean)
+	@for subsystem in $(SUBSYSTEMS); do \
+		$(MAKE) -e --directory="$$subsystem" clean; \
+	done
 	@echo "All sub-directories are now clean."
