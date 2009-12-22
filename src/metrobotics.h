@@ -35,6 +35,7 @@
  */
 
 // [Simply include everything!]
+#include "Lerp/Lerp.h"
 #include "Timer/Timer.h"
 #include "Timer/PosixTimer.h"
 
