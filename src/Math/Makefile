@@ -66,5 +66,8 @@ clean:
 
 
 # Individual source targets
-RealNumber.o: RealNumber.cpp RealNumber.h
-	$(CC) -c $(CFLAGS) RealNumber.cpp
+RealEquality.o: RealEquality.cpp RealEquality.h
+	$(CC) -c $(CFLAGS) RealEquality.cpp
+
+RealLessThan.o: RealLessThan.cpp RealLessThan.h
+	$(CC) -c $(CFLAGS) RealLessThan.cpp

@@ -35,7 +35,8 @@
  */
 
 // [Simply include everything!]
-#include "Math/RealNumber.h"
+#include "Math/RealEquality.h"
+#include "Math/RealLessThan.h"
 #include "Math/Lerp.h"
 #include "Timer/Timer.h"
 #include "Timer/PosixTimer.h"
