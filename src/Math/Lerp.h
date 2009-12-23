@@ -40,7 +40,7 @@ namespace metrobotics
 			 *          operators, that is, specifically, the \a less \a than (\b <) operator and
 			 *          the \a equal \a to (\b ==) operator.
 			 */
-			typedef vectorN::value_type key_type;
+			typedef typename vectorN::value_type key_type;
 
 			/**
 			 * \brief   The type of the elements (vectors) in the vector space.
@@ -80,7 +80,7 @@ namespace metrobotics
 			 *          for interpolation cannot be changed after the linear interpolation object is
 			 *          created.
 			 */
-			Lerp(vectorN::size_type pos = 0)
+			Lerp(typename vectorN::size_type pos = 0)
 			:_pos(pos)
 			{
 			}
@@ -97,10 +97,10 @@ namespace metrobotics
 			 * \note    Inserting the same data point twice has no effect. More specifically, the
 			 *          entry (component) in position \c _pos of one vector is the same as another
 			 *          vector if and only if both vectors are equivalent.
-			 */
 			void insert(const vectorN& vec)
 			{
 			}
+			 */
 
 			/**
 			 * \brief   Erase a data point from the set.
@@ -109,27 +109,27 @@ namespace metrobotics
 			 *
 			 * \arg     \c vec is the N-dimensional vector that represents the N-dimensional point
 			 *          to be erased from the set of data points.
-			 */
 			void erase(const vectorN& vec)
 			{
 			}
+			 */
 
 			/**
 			 * \brief   Erase all data points from the set.
-			 */
 			void clear()
 			{
 			}
+			 */
 
 			/**
 			 * \brief   Test whether the set contains any data points.
 			 *
 			 * \returns true if the set has no data points; false if the set contains at least one
 			 *          data point
-			 */
 			bool empty() const
 			{
 			}
+			 */
 
 			/**
 			 * \brief   Test whether a specific data point is contained within the set of data
@@ -140,19 +140,19 @@ namespace metrobotics
 			 *
 			 * \returns true if \c vec is found in the set of data points; false if \c vec is not in
 			 *          the set of data points
-			 */
 			bool exists(const vectorN& vec) const
 			{
 			}
+			 */
 
 			/**
 			 * \brief   The number of recorded data points.
 			 *
 			 * \returns the number of data points that are currently in the set
-			 */
 			size_type size() const
 			{
 			}
+			 */
 
 			/**
 			 * \brief     Interpolate an N-dimensional vector.
@@ -173,10 +173,10 @@ namespace metrobotics
 			 *            than all the existing data points in the set; in other words, the
 			 *            component would represent a vector that is outside the interval of
 			 *            recorded data points.
-			 */
 			vectorN interpolate(const vectorN::value_type& comp)
 			{
 			}
+			 */
 
 		protected:
 			/**
@@ -187,7 +187,7 @@ namespace metrobotics
 			 *          the value of this attribute is initialized at object creation time, and its
 			 *          value may not change during the lifetime of the object.
 			 */
-			const vectorN::size_type _pos;
+			const typename vectorN::size_type _pos;
 
 			/**
 			 * \brief   The set (collection) of data points.
@@ -195,7 +195,7 @@ namespace metrobotics
 			 * \details The set (collection) of data points is arranged in order with respect to the
 			 *          entry (component) of the vector that is denoted by the \c _pos attribute.
 			 */
-			std::map<vectorN::value_type, vectorN> _data;
+			std::map<typename vectorN::value_type, vectorN> _data;
 	};
 }
 

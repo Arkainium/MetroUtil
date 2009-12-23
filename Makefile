@@ -91,3 +91,13 @@ clean:
 		$(MAKE) -e --directory="$$subsystem" clean; \
 	done
 	@echo "All sub-directories are now clean."
+
+# Remove absolutely everything, including doc, include, and lib directories.
+purge:
+	$(MAKE) -e clean
+	@echo "Purging all unnecessary files and directories."
+	rm -rf ./doc ./include ./lib
+	@for subsystem in $(SUBSYSTEMS); do \
+		rm -rf "$$subsystem/doc" "$$subsystem/include" "$$subsystem/lib"; \
+	done
+	@echo "All unnecessary files and directories have been purged."

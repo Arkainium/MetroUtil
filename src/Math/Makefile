@@ -9,8 +9,10 @@ CFLAGS     := -Wall
 
 
 # Files
-SUBSYSTEM := Lerp
+SUBSYSTEM := Math
+OUTPUT    := libMath.a
 SOURCES   := $(wildcard *.cpp)
+OBJECTS   := $(patsubst %.cpp, %.o, $(SOURCES))
 HEADERS   := $(wildcard *.h)
 
 
@@ -18,13 +20,13 @@ HEADERS   := $(wildcard *.h)
 .PHONY: install clean
 
 
-default:
-# Since this is a templated library there's nothing to do here;
-# it will be generated at compile-time when the user instantiates it.
+# Default target: build the library
+$(OUTPUT): $(OBJECTS)
+	ar rs $(OUTPUT) $(OBJECTS)
 
 
-# Install the headers files.
-install:
+# Install the headers and library files
+install: $(OUTPUT)
 # Make sure an include directory exists
 	@if [ ! -e "$(INSTALLDIR)/include" ]; then \
 		mkdir "$(INSTALLDIR)/include"; \
@@ -46,7 +48,23 @@ install:
 	@for file in $(HEADERS); do \
 		cp "$$file" "$(INSTALLDIR)/include/$(SUBSYSTEM)"; \
 	done
+# Make sure a lib folder exists
+	@if [ ! -e "$(INSTALLDIR)/lib" ]; then \
+		mkdir "$(INSTALLDIR)/lib"; \
+	elif [ ! -d "$(INSTALLDIR)/lib" ]; then \
+		echo "Failed to install library files."; \
+		echo "$(INSTALLDIR)/lib is not a valid directory."; \
+		exit 1; \
+	fi
+# Install the library 
+	@cp "$(OUTPUT)" "$(INSTALLDIR)/lib"
 
 
+# Remove unnecessary output files
 clean:
-# There are no output files to remove.
+	rm -rf $(OUTPUT) $(OBJECTS)
+
+
+# Individual source targets
+RealNumber.o: RealNumber.cpp RealNumber.h
+	$(CC) -c $(CFLAGS) RealNumber.cpp

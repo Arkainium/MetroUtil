@@ -35,7 +35,8 @@
  */
 
 // [Simply include everything!]
-#include "Lerp/Lerp.h"
+#include "Math/RealNumber.h"
+#include "Math/Lerp.h"
 #include "Timer/Timer.h"
 #include "Timer/PosixTimer.h"
 
