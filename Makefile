@@ -17,7 +17,7 @@ SUBSYSTEMS := $(shell find ./src/ -maxdepth 1 -mindepth 1 -type d)
 
 
 # General targets
-.PHONY: compile link docs install clean
+.PHONY: compile link docs install clean purge
 
 
 # Default target: build the library

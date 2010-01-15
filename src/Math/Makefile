@@ -66,8 +66,11 @@ clean:
 
 
 # Individual source targets
-RealEquality.o: RealEquality.cpp RealEquality.h
+RealPredicate.o: RealPredicate.cpp RealPredicate.h
+	$(CC) -c $(CFLAGS) RealPredicate.cpp
+
+RealEquality.o: RealEquality.cpp RealEquality.h RealPredicate.h
 	$(CC) -c $(CFLAGS) RealEquality.cpp
 
-RealLessThan.o: RealLessThan.cpp RealLessThan.h
+RealLessThan.o: RealLessThan.cpp RealLessThan.h RealPredicate.h
 	$(CC) -c $(CFLAGS) RealLessThan.cpp

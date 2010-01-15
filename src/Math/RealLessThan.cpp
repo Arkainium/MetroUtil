@@ -2,7 +2,7 @@
 using namespace metrobotics;
 
 RealLessThan::RealLessThan(double epsilon)
-:_epsilon(epsilon)
+:RealPredicate(epsilon)
 {
 }
 

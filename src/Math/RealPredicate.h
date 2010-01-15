@@ -1,29 +1,30 @@
-#ifndef METROBOTICS_REALLESSTHAN_H
-#define METROBOTICS_REALLESSTHAN_H
-
-#include "RealPredicate.h"
+#ifndef METROBOTICS_REALPREDICATE_H
+#define METROBOTICS_REALPREDICATE_H
 
 namespace metrobotics
 {
 	/**
-	 * \class   RealLessThan
+	 * \class   RealPredicate
 	 *
-	 * \brief   A function object that compares two real numbers using the less than relation.
+	 * \brief   A function object that compares two real numbers using some relation.
 	 *
 	 * \details This comparison takes into account the limited precision of floating point values by
 	 *          using an arbitrarily chosen acceptable margin of error.
 	 *
-	 * \remark  Given two floating point numbers <b>a</b> and <b>b</b>, and an acceptable margin of
-	 *          error <b>e</b>, then <b>a < b if and only if (b - a) > e</b>.
+	 * \note    This is just an abstract class that doesn't correspond to any actual relation.
 	 *
 	 * \author  Mark Manashirov <mark.manashirov@gmail.com>
 	 */
-	class RealLessThan : public RealPredicate
+	class RealPredicate
 	{
 		public:
+			// [Conform to STL's specification for adaptable binary predicates.]
+			typedef double first_argument_type;
+			typedef double second_argument_type;
+			typedef bool   result_type;
+
 			/**
-			 * \brief   Construct a new predicate for comparing two real numbers using the less than
-			 *          relation.
+			 * \brief   Construct a new predicate for comparing two real numbers.
 			 *
 			 * \details Optionally provide an acceptable margin of error to be used in comparisons;
 			 *          if no acceptable margin of error is specified then it is assumed that there
@@ -33,17 +34,21 @@ namespace metrobotics
 			 *
 			 * \arg     epsilon is the acceptable margin of error
 			 */
-			RealLessThan(double epsilon = 0.0);
+			RealPredicate(double epsilon = 0.0);
 
 			/**
 			 * \brief   Function call operator.
 			 *
 			 * \details Treats the predicate as a function that takes two real numbers and returns
-			 *          the result of their comparison. For example, given two real numbers <b>a</b>
-			 *          and <b>b</b> and \c RealLessThan <b>f(e)</b> where <b>e</b> is the
-			 *          acceptable margin of error, then <b>f(a, b) == [(b - a) > e]</b>.
+			 *          the result of their comparison, whatever it may be.
 			 */
-			bool operator()(const double& lhs, const double& rhs) const;
+			virtual bool operator()(const double& lhs, const double& rhs) const = 0;
+
+		protected:
+			/**
+			 * \brief   The acceptable margin of error.
+			 */
+			double _epsilon;
 	};
 }
 

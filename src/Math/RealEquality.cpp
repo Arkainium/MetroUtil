@@ -5,7 +5,7 @@ using namespace std;
 using namespace metrobotics;
 
 RealEquality::RealEquality(double epsilon)
-:_epsilon(epsilon)
+:RealPredicate(epsilon)
 {
 }
 
