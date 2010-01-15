@@ -2,6 +2,7 @@
 doc/
 include/
 lib/
+temp/
 
 # Always ignore output files
 *.o

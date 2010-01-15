@@ -1,6 +1,8 @@
 #ifndef METROBOTICS_REALPREDICATE_H
 #define METROBOTICS_REALPREDICATE_H
 
+#include <functional>
+
 namespace metrobotics
 {
 	/**
@@ -15,14 +17,9 @@ namespace metrobotics
 	 *
 	 * \author  Mark Manashirov <mark.manashirov@gmail.com>
 	 */
-	class RealPredicate
+	class RealPredicate : public std::binary_function<double, double, bool>
 	{
 		public:
-			// [Conform to STL's specification for adaptable binary predicates.]
-			typedef double first_argument_type;
-			typedef double second_argument_type;
-			typedef bool   result_type;
-
 			/**
 			 * \brief   Construct a new predicate for comparing two real numbers.
 			 *
