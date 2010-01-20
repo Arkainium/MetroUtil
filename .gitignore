@@ -2,6 +2,7 @@
 doc/
 include/
 lib/
+test/
 temp/
 
 # Always ignore output files
