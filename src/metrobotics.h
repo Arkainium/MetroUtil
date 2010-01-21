@@ -9,17 +9,60 @@
  *
  * \section  main_intro Introduction
  *
- *     This library was created for the MetroBotics project at CUNY.
- *     Its purpose is to provide a framework of commonly used classes and functions that
- *     aid in the development of artificial intelligence and robotics applications.
+ *     This library was created for the MetroBotics project at CUNY.  Its purpose is to provide a
+ *     framework of commonly used classes and functions that aid in the development of artificial
+ *     intelligence and robotics applications.
+ *
+ * \section  main_install Installing the Library
+ *     <ol>
+ *       <li>
+ *         Run \c make to build the library.
+ *       </li>
+ *       <li>
+ *         Run \c make \c install to install the headers and library files into the \em
+ *         MetroUtil/include and \em MetroUtil/lib directories.
+ *       </li>
+ *     </ol>
  *
  * \section  main_usage Using the Library
- *     Include the header file \link metrobotics.h \endlink, which includes all of the library's
- *     constituent classes and functions.
+ *     <ol>
+ *       <li>
+ *         Include the \link metrobotics.h \endlink header file into your source code.
+ *             \code
+ *                 #include "metrobotics.h"
+ *             \endcode
+ *       </li>
+ *       <li>
+ *         All classes and functions in the library exist within the \link metrobotics \endlink
+ *         namespace.
+ *             \code
+ *                 using namespace metrobotics;
+ *             \endcode
+ *       </li>
+ *       <li>
+ *         Link the \em libMetrobotics.a library file into your project.
+ *             \code
+ *                 g++ foo.cpp -IMetroUtil/include -LMetroUtil/lib -lMetrobotics
+ *             \endcode
+ *       </li>
+ *     </ol>
+ *
+ * \section main_references References
+ *     <ul>
+ *       <li>
+ *         <a href="http://agents.sci.brooklyn.cuny.edu/metrobotics/">Metrobotics Home Page</a>
+ *       </li>
+ *       <li>
+ *         <a href="http://github.com/Arkainium/MetroUtil">MetroUtil Git Repository</a>
+ *       </li>
+ *     </ul>
  *
  * \section main_maintainers Maintainers
- *
- *     Mark Manashirov <mark.manashirov@gmail.com>
+ *     <ul>
+ *       <li>
+ *         Mark Manashirov <mark.manashirov@gmail.com>
+ *       </li>
+ *     </ul>
  *
  * \section main_acknowledgements Acknowledgements
  */
