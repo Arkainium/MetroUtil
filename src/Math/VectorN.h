@@ -1,6 +1,7 @@
 #ifndef METROBOTICS_VECTORN_H
 #define METROBOTICS_VECTORN_H
 
+#include <cstddef>
 #include <stdexcept>
 
 namespace metrobotics
@@ -153,7 +154,12 @@ namespace metrobotics
 			}
 
 			/**
-			 * \brief   Equal-to operator.
+			 * \anchor  equality
+			 *
+			 * \brief   Equality operator.
+			 *
+			 * \details Two vectors \b a and \b b are \b equal if they are of the same dimension,
+			 *          \b N, and for 0 <= \b i < N, <b>a[i] == b[i]</b>.
 			 */
 			friend bool operator==(const VectorN<T, N>& lhs, const VectorN<T, N>& rhs)
 			{
@@ -167,7 +173,9 @@ namespace metrobotics
 			}
 
 			/**
-			 * \brief   Not-equal-to operator.
+			 * \brief   Inequality operator.
+			 *
+			 * \details The converse of \ref equality .
 			 */
 			friend bool operator!=(const VectorN<T, N>& lhs, const VectorN<T, N>& rhs)
 			{

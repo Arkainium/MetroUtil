@@ -82,6 +82,7 @@
 #include "Math/RealEquality.h"
 #include "Math/RealLessThan.h"
 #include "Math/VectorN.h"
+#include "Math/RealVectorN.h"
 #include "Timer/Timer.h"
 #include "Timer/PosixTimer.h"
 
