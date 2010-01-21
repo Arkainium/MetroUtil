@@ -8,5 +8,5 @@ RealLessThan::RealLessThan(double epsilon)
 
 bool RealLessThan::operator()(const double& lhs, const double& rhs) const
 {
-	return (rhs - lhs) > _epsilon;
+	return (rhs - lhs) > marginOfError();
 }

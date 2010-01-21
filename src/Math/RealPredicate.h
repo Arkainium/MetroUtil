@@ -34,14 +34,29 @@ namespace metrobotics
 			RealPredicate(double epsilon = 0.0);
 
 			/**
+			 * \brief   Set/change the acceptable margin of error.
+			 *
+			 * \arg     epsilon is the acceptable margin of error
+			 */
+			void marginOfError(double epsilon);
+
+			/**
+			 * \brief   Get the acceptable margin of error.
+			 *
+			 * \returns the acceptable margin of error
+			 */
+			double marginOfError() const;
+
+			/**
 			 * \brief   Function call operator.
 			 *
-			 * \details Treats the predicate as a function that takes two real numbers and returns
-			 *          the result of their comparison, whatever it may be.
+			 * \details Treats the predicate as a binary function that takes two real numbers and
+			 *          returns the result of their comparison, whatever it may be, and taking into
+			 *          account the acceptable margin of error.
 			 */
 			virtual bool operator()(const double& lhs, const double& rhs) const = 0;
 
-		protected:
+		private:
 			/**
 			 * \brief   The acceptable margin of error.
 			 */

@@ -11,5 +11,5 @@ RealEquality::RealEquality(double epsilon)
 
 bool RealEquality::operator()(const double& lhs, const double& rhs) const
 {
-	return fabs(lhs - rhs) <= _epsilon;
+	return fabs(lhs - rhs) <= marginOfError();
 }
