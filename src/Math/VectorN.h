@@ -20,7 +20,7 @@ namespace metrobotics
 	 * \tparam  T is a type that is capable of the following operations:
 	 *          <ol>
 	 *            <li>
-	 *                Addition
+	 *                Addition:
 	 *                \code
 	 *                    T a, b;
 	 *                    // ...
@@ -30,7 +30,7 @@ namespace metrobotics
 	 *                \endcode
 	 *            </li>
 	 *            <li>
-	 *                Subtraction
+	 *                Subtraction:
 	 *                \code
 	 *                    T a, b;
 	 *                    // ...
@@ -40,7 +40,7 @@ namespace metrobotics
 	 *                \endcode
 	 *            </li>
 	 *            <li>
-	 *                Multiplication
+	 *                Multiplication:
 	 *                \code
 	 *                    T a, b;
 	 *                    // ...
@@ -50,7 +50,7 @@ namespace metrobotics
 	 *                \endcode
 	 *            </li>
 	 *            <li>
-	 *                Equality
+	 *                Equality:
 	 *                \code
 	 *                    T a, b;
 	 *                    // ...
@@ -61,6 +61,7 @@ namespace metrobotics
 	 *            </li>
 	 *          </ol>
 	 *
+	 * \anchor  dimension
 	 * \tparam  N is an unsigned integral value that represents the dimension of the vector
 	 *
 	 * \author  Mark Manashirov <mark.manashirov@gmail.com>
@@ -132,7 +133,7 @@ namespace metrobotics
 			/**
 			 * \brief   Index into a vector to randomly access its entries.
 			 */
-			T& operator[](size_t index)
+			T& operator[](size_type index)
 			{
 				if (index >= N) {
 					throw std::domain_error("VectorN: out of bounds");
@@ -144,7 +145,7 @@ namespace metrobotics
 			/**
 			 * \brief   Index into a vector to randomly access its entries (constant version).
 			 */
-			const T& operator[](size_t index) const
+			const T& operator[](size_type index) const
 			{
 				if (index >= N) {
 					throw std::domain_error("VectorN: out of bounds");
@@ -155,7 +156,6 @@ namespace metrobotics
 
 			/**
 			 * \anchor  equality
-			 *
 			 * \brief   Equality operator.
 			 *
 			 * \details Two vectors \b a and \b b are \b equal if they are of the same dimension,
@@ -163,13 +163,7 @@ namespace metrobotics
 			 */
 			friend bool operator==(const VectorN<T, N>& lhs, const VectorN<T, N>& rhs)
 			{
-				// [Check each entry one at a time.]
-				for (typename VectorN<T, N>::size_type i = 0; i < N; ++i) {
-					if (!(lhs[i] == rhs[i])) {
-						return false;
-					}
-				}
-				return true;
+				return lhs._equals(rhs);
 			}
 
 			/**
@@ -235,8 +229,26 @@ namespace metrobotics
 				return ret;
 			}
 
+		protected:
+			//! @cond INTERNAL
+			// Determine whether two vectors are equivalent.
+			virtual bool _equals(const VectorN& v) const
+			{
+				// [Check each entry one at a time.]
+				for (size_type i = 0; i < N; ++i) {
+					if (_data[i] != v[i]) {
+						return false;
+					}
+				}
+				return true;
+			}
+			//! @endcond
+
 		private:
+			//! @cond INTERNAL
+			// The vector is stored internally as a standard array.
 			T _data[N];
+			//! @endcond
 	};
 }
 

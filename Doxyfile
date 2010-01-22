@@ -99,7 +99,7 @@ ALWAYS_DETAILED_SEC    = NO
 # members were ordinary class members. Constructors, destructors and assignment
 # operators of the base classes will not be shown.
 
-INLINE_INHERITED_MEMB  = NO
+INLINE_INHERITED_MEMB  = YES
 
 # If the FULL_PATH_NAMES tag is set to YES then Doxygen will prepend the full
 # path before files name in the file list and in the header files. If set
@@ -170,7 +170,7 @@ SEPARATE_MEMBER_PAGES  = NO
 # The TAB_SIZE tag can be used to set the number of spaces in a tab.
 # Doxygen uses this value to replace tabs by spaces in code fragments.
 
-TAB_SIZE               = 8
+TAB_SIZE               = 4
 
 # This tag can be used to specify a number of aliases that acts
 # as commands in the documentation. An alias has the form "name=value".
@@ -225,7 +225,7 @@ EXTENSION_MAPPING      =
 # func(std::string) {}). This also make the inheritance and collaboration
 # diagrams that involve STL classes more complete and accurate.
 
-BUILTIN_STL_SUPPORT    = NO
+BUILTIN_STL_SUPPORT    = YES
 
 # If you use Microsoft's C++/CLI language, you should set this option to YES to
 # enable parsing support.
@@ -313,7 +313,7 @@ EXTRACT_STATIC         = NO
 # defined locally in source files will be included in the documentation.
 # If set to NO only classes defined in header files are included.
 
-EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_CLASSES  = NO
 
 # This flag is only useful for Objective-C code. When set to YES local
 # methods, which are defined in the implementation section but not in
@@ -357,7 +357,7 @@ HIDE_FRIEND_COMPOUNDS  = NO
 # If set to NO (the default) these blocks will be appended to the
 # function's detailed documentation block.
 
-HIDE_IN_BODY_DOCS      = NO
+HIDE_IN_BODY_DOCS      = YES
 
 # The INTERNAL_DOCS tag determines if documentation
 # that is typed after a \internal command is included. If the tag is set
@@ -389,7 +389,7 @@ SHOW_INCLUDE_FILES     = YES
 # If the INLINE_INFO tag is set to YES (the default) then a tag [inline]
 # is inserted in the documentation for inline members.
 
-INLINE_INFO            = YES
+INLINE_INFO            = NO
 
 # If the SORT_MEMBER_DOCS tag is set to YES (the default) then doxygen
 # will sort the (detailed) documentation of file and class members
@@ -474,7 +474,7 @@ SHOW_USED_FILES        = YES
 # then setting the SHOW_DIRECTORIES tag to YES will show the directory hierarchy
 # in the documentation. The default is NO.
 
-SHOW_DIRECTORIES       = NO
+SHOW_DIRECTORIES       = YES
 
 # Set the SHOW_FILES tag to NO to disable the generation of the Files page.
 # This will remove the Files entry from the Quick Index and from the

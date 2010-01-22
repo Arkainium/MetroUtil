@@ -14,7 +14,7 @@ namespace metrobotics
 	 * \details This class is capable of representing vectors of any dimension (size) over 
 	 *          the real numbers, that is values represented by type \c double.
 	 *
-	 * \tparam  N is an unsigned integral value that represents the dimension of the vector
+	 * \tparam  N is an unsigned integral value that represents the dimension (size) of the vector
 	 *
 	 * \author  Mark Manashirov <mark.manashirov@gmail.com>
 	 */
@@ -65,52 +65,46 @@ namespace metrobotics
 				}
 			}
 
-			/**
-			 * \anchor  equality
-			 *
-			 * \brief   Equality operator.
-			 *
-			 * \details Two vectors \b a and \b b are \b equal if they are of the same dimension,
-			 *          \b N, and for 0 <= \b i < N, <b>a[i] == b[i]</b>.
-			 *
-			 * \remark  Given two real numbers <b>a[0]</b> and <b>b[0]</b>, and an acceptable margin of
-			 *          error <b>e</b>, then <b>a[0] == b[0] if and only if |a[0] - b[0]| <= e</b>.
-			 */
-			friend bool operator==(const RealVectorN<N>& lhs, const RealVectorN<N>& rhs)
+		protected:
+			//! @cond INTERNAL
+			// Determine whether two vectors are equivalent.
+			virtual bool _equals(const VectorN<double, N>& v) const
 			{
 				// [Check each entry one at a time.]
 				for (typename RealVectorN<N>::size_type i = 0; i < N; ++i) {
-					if (!(_equal_to(lhs[i], rhs[i]))) {
+					if (!(_equal_to((*this)[i], v[i]))) {
 						return false;
 					}
 				}
 				return true;
 			}
-
-			/**
-			 * \brief   Inequality operator.
-			 *
-			 * \details The converse of \ref equality .
-			 */
-			friend bool operator!=(const RealVectorN<N>& lhs, const RealVectorN<N>& rhs)
-			{
-				// [Delegate work to operator==().]
-				return !(lhs == rhs);
-			}
+			//! @endcond
 
 		private:
-			/**
-			 * \brief   Binary predicate used to determine whether two real numbers are equivalent.
-			 *
-			 * \details This binary predicate will be used for the entire vector space, that is for
-			 *          all vectors of the same dimension.
-			 */
+			//! @cond INTERNAL
+			// A binary predicate that is used to determine whether two real numbers are equivalent.
+			// This binary predicate will be used for the entire vector space, that is for all
+			// vectors of the same dimension.
 			static RealEquality _equal_to;
+			//! @endcond
 	};
 
-	// [Default-initialize the binary predicate.]
+	//! @cond INTERNAL
+	// Default-initialize the binary predicate.
 	template <size_t N>
 	RealEquality RealVectorN<N>::_equal_to = RealEquality();
+	//! @endcond
+
+	// [Handy type definitions.]
+	/**
+	 * \brief   A two-dimensional vector over the real numbers.
+	 */
+	typedef RealVectorN<2> RealVector2;
+
+	/**
+	 * \brief   A three-dimensional vector over the real numbers.
+	 */
+	typedef RealVectorN<3> RealVector3;
 }
 
 #endif
