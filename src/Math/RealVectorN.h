@@ -65,6 +65,40 @@ namespace metrobotics
 				}
 			}
 
+			/**
+			 * \brief   Copy constructor.
+			 */
+			RealVectorN(const RealVectorN& v)
+			{
+				// [Delegate work to the assignment operator.]
+				*this = v;
+			}
+
+			/**
+			 * \brief   Copy constructor for \em upcasting from the base class.
+			 */
+			RealVectorN(const VectorN<double, N>& v)
+			{
+				// [Copy the vector entry by entry.]
+				for (typename RealVectorN<N>::size_type i = 0; i < N; ++i) {
+					(*this)[i] = v[i];
+				}
+			}
+
+			/**
+			 * \brief   Assignment operator.
+			 */
+			RealVectorN& operator=(const RealVectorN& v)
+			{
+				if (this != &v) {
+					// [Copy the vector entry by entry.]
+					for (typename RealVectorN<N>::size_type i = 0; i < N; ++i) {
+						(*this)[i] = v[i];
+					}
+				}
+				return *this;
+			}
+
 		protected:
 			//! @cond INTERNAL
 			// Determine whether two vectors are equivalent.
