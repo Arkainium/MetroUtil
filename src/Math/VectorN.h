@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <stdexcept>
+#include <fstream>
 
 namespace metrobotics
 {
@@ -227,6 +228,34 @@ namespace metrobotics
 					ret[i] = lhs[i] * rhs;
 				}
 				return ret;
+			}
+
+			/**
+			 * \brief   Input operator: read a vector from an input stream.
+			 */
+			friend std::istream& operator>>(std::istream& is, VectorN<T, N>& v)
+			{
+				if (is) {
+					for (size_type i = 0; i < N; ++i) {
+						is >> v[i];
+					}
+				}
+				return is;
+			}
+
+			/**
+			 * \brief   Output operator: print a vector to an output stream.
+			 */
+			friend std::ostream& operator<<(std::ostream& os, const VectorN<T, N>& v)
+			{
+				if (os) {
+					os << "[";
+					for (size_type i = 0; i < N; ++i) {
+						os << v[i] << (i == N - 1 ? "" : ", ");
+					}
+					os << "]";
+				}
+				return os;
 			}
 
 		protected:
