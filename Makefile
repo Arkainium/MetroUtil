@@ -5,6 +5,7 @@ export CC    := g++
 
 # Options
 export INSTALLDIR := $(CURDIR)
+export CFLAGS     := -Wall -fPIC
 
 
 # Files
