@@ -5,7 +5,7 @@ export CC    := g++
 
 # Options
 export INSTALLDIR := $(CURDIR)
-export CFLAGS     := -Wall -fPIC
+export CFLAGS     := -Wall -I"../" -fPIC
 
 
 # Files
@@ -32,6 +32,9 @@ compile:
 	@echo "Compiling the library's sub-components."
 	@for subsystem in $(SUBSYSTEMS); do \
 		$(MAKE) -e --directory="$$subsystem"; \
+		if [ "$$?" != "0" ]; then \
+			exit 2; \
+		fi \
 	done
 
 

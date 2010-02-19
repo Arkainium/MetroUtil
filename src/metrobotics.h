@@ -78,6 +78,8 @@
  */
 
 // [Simply include everything!]
+#include "Communication/Serial.h"
+#include "Communication/PosixSerial.h"
 #include "Math/RealPredicate.h"
 #include "Math/RealEquality.h"
 #include "Math/RealLessThan.h"
