@@ -13,6 +13,8 @@
 /* carry this notice.                                                   */
 /************************************************************************/
 
+#include <string>
+
 namespace metrobotics
 {
 
@@ -65,12 +67,22 @@ namespace metrobotics
 	 *          communication; observe that Serial is both a DataSource and
 	 *          a DataSink.
 	 * \author  John Cummins
+	 * \author  Mark Manashirov
 	 */
 	class Serial : public DataSource, public DataSink
 	{
 		public:
 			Serial() {}
 			virtual ~Serial() {}
+
+			// [Exceptions.]
+			class InvalidDeviceName {};
+			class ConnectionFailure {};
+			class WriteFailure {};
+			class WriteTimeout {};
+			class ReadFailure {};
+			class ReadTimeout {};
+			class NullPointer {};
 
 			// [Input capabilities.]
 			virtual void flushInput() = 0;
@@ -81,6 +93,21 @@ namespace metrobotics
 			virtual void flushOutput() = 0;
 			virtual void putByte(const unsigned char) = 0;
 			virtual void putBlock(const unsigned char *buf, unsigned long nBytes) = 0;
+
+			/**
+			 * \brief   Flush both input and output.
+			 */
+			void flush();
+
+			/**
+			 * \brief   Get a whole line of input from the serial device.
+			 * \details We define a line as a sequence of characters whose last character is the
+			 *          first occurrence of the character specified by the delimiter argument.  For
+			 *          example, if the delimiter is the newline character itself, then that will be
+			 *          the last character in the line; in other words the delimiter is included as
+			 *          part of the line.
+			 */
+			std::string getLine(char delimiter = '\n');
 	};
 
 }

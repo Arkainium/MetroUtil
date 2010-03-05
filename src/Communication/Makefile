@@ -66,5 +66,8 @@ clean:
 
 
 # Individual source targets
+Serial.o: Serial.cpp Serial.h
+	$(CC) -c $(CFLAGS) Serial.cpp
+
 PosixSerial.o: PosixSerial.cpp PosixSerial.h Serial.h
 	$(CC) -c $(CFLAGS) PosixSerial.cpp

@@ -232,26 +232,10 @@ void PosixSerial::flushInput()
 	}
 }
 
-void PosixSerial::flush()
-{
-	flushOutput();
-	flushInput();
-}
-
 void PosixSerial::timeout(unsigned int ms)
 {
 	if (!mFunctional) {
 		connect();
 	}
 	mTimeOut = ms;
-}
-
-string PosixSerial::getLine(char delimiter)
-{
-	if (!mFunctional) {
-		connect();
-	}
-	string ret;
-	for (int i = 0; (ret += getByte())[i] != delimiter; ++i);
-	return ret;
 }

@@ -33,33 +33,23 @@ namespace metrobotics
 			PosixSerial(const char *devName, unsigned int baudRate);
 			~PosixSerial();
 
-			// Exceptions.
-			class InvalidDeviceName {};
-			class ConnectionFailure {};
-			class WriteFailure {};
-			class WriteTimeout {};
-			class ReadFailure {};
-			class ReadTimeout {};
-			class NullPointer {};
-
-			// Implement input capabilities.
+			// [Implement input capabilities.]
 			void flushInput();
 			unsigned char getByte();
 			void getBlock(unsigned char *buf, unsigned long nBytes);
 
 
-			// Implement output capabilities.
+			// [Implement output capabilities.]
 			void flushOutput();
 			void putByte(const unsigned char);
 			void putBlock(const unsigned char *buf, unsigned long nBytes);
 
-			// Class-specific capabailites.
+			// [Class-specific capabailites.]
 
-			// Toggle class-wide debugging.
+			/**
+			 * \brief   Toggle class-wide debugging.
+			 */
 			static void debugging(bool);
-
-			// Flush both input and output.
-			void flush();
 
 			/**
 			 * \brief   Set a timeout (in milliseconds) for all I/O operations.
@@ -67,15 +57,6 @@ namespace metrobotics
 			 */
 			void timeout(unsigned int ms = 0);
 
-			/**
-			 * \brief   Get a whole line of input from the serial device.
-			 * \details We define a line as a sequence of characters whose last character is the
-			 *          first occurrence of the character specified by the delimiter argument.  For
-			 *          example, if the delimiter is the newline character itself, then that will be
-			 *          the last character in the line; in other words the delimiter is included as
-			 *          part of the line.
-			 */
-			std::string getLine(char delimiter = '\n');
 
 		private:
 			// Disable copying and assignment for PosixSerial objects.
