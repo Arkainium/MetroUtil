@@ -5,7 +5,8 @@ Introduction:
 
 
 Installation:
-    1. Run 'make' to build the library.
+    1. Run 'make' to build the library, or 'make DEBUG=0' to build the library
+       without any debugging information included (e.g. release version).
     2. Run 'make install' to install the headers and library files into
        the MetroUtil/include and MetroUtil/lib directories.
     3. Run 'make docs' to install the documentation files into the MetroUtil/doc
@@ -27,4 +28,4 @@ Usage:
 
 
 Metrobotics Home Page:
-    http://agents.sci.brooklyn.cuny.edu/metrobotics/
+    http://bots.sci.brooklyn.cuny.edu/metrobotics/

@@ -8,6 +8,15 @@ export INSTALLDIR := $(CURDIR)
 export CFLAGS     := -Wall -I"../" -fPIC
 
 
+# Debugging support
+export DEBUG ?= 1
+ifeq ($(DEBUG), 0)
+	CFLAGS := $(CFLAGS) -g0
+else
+	CFLAGS := $(CFLAGS) -g3
+endif
+
+
 # Files
 OUTPUT     := libMetrobotics.a
 SOURCES    := $(shell find ./src/ -type f -name "*.cpp")
