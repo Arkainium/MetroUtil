@@ -2,6 +2,7 @@
 #define METROBOTICS_LERP_H
 
 #include <map>
+#include <algorithm>
 #include <stdexcept>
 
 #include "RealVectorN.h"
@@ -226,6 +227,28 @@ namespace metrobotics
 				} else {
 					return false;
 				}
+			}
+
+			/**
+			 * \brief   Retrieve the data point whose key is the greatest from the set of all points.
+			 */
+			value_type max() const
+			{
+				if (_data.empty()) {
+					throw std::logic_error("Lerp: no points from which to retrieve maximum");
+				}
+				return (_data.rbegin())->second;
+			}
+
+			/**
+			 * \brief   Retrieve the data point whose key is the lowest from the set of all points.
+			 */
+			value_type min() const
+			{
+				if (_data.empty()) {
+					throw std::logic_error("Lerp: no points from which to retrieve minimum");
+				}
+				return (_data.begin())->second;
 			}
 
 			/**
