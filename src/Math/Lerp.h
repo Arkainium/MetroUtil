@@ -230,7 +230,9 @@ namespace metrobotics
 			}
 
 			/**
-			 * \brief   Retrieve the data point whose key is the greatest from the set of all points.
+			 * \brief     Retrieve the data point whose key is the greatest from the set of all points.
+			 *
+			 * \exception std::logic_error is thrown when the set of points is empty
 			 */
 			value_type max() const
 			{
@@ -241,7 +243,9 @@ namespace metrobotics
 			}
 
 			/**
-			 * \brief   Retrieve the data point whose key is the lowest from the set of all points.
+			 * \brief     Retrieve the data point whose key is the lowest from the set of all points.
+			 *
+			 * \exception std::logic_error is thrown when the set of points is empty
 			 */
 			value_type min() const
 			{
@@ -304,6 +308,43 @@ namespace metrobotics
 					const value_type diff = rhs - lhs;
 					const key_type   delta = (key - lhs[position]) / (rhs[position] - lhs[position]);
 					return lhs + delta * diff;
+				}
+			}
+
+			/**
+			 * \brief     Interpolate an N-dimensional vector with possible truncation.
+			 *
+			 * \details   Interpolate an N-dimensional vector with respect to the key (component)
+			 *            at \ref position using the data points that already exist in the set. If
+			 *            the given key is outside the interval specified by the points, then the
+			 *            key is truncated (clamped) to the nearest endpoint, which is subsequently
+			 *            returned to the caller.
+			 *
+			 * \arg       key is the entry (component) of the \em unknown vector (i.e. the vector
+			 *            that you're trying to find), which will be used to interpolate its
+			 *            remaining entries (components) with respect to the existing data points in
+			 *            the set; if key falls outside the interval specified by the points then it
+			 *            will be truncated to the nearest endpoint in the set
+			 *
+			 * \returns   an N-dimensional vector that contains the possibly truncated value of \c
+			 *            key at entry \ref position, and whose remaining entries have been
+			 *            interpolated using the data points in the set
+			 *
+			 * \exception std::logic_error is thrown when the set of points is empty
+ 			 */
+			value_type truncate(const key_type& key) const
+			{
+				value_type leftEndpt  = min();
+				value_type rightEndpt = max();
+				// Truncate from the left?
+				if (_lt(key, leftEndpt[position]) || _eq(key, leftEndpt[position])) {
+					return leftEndpt;
+				// Truncate from the right?
+				} else if (_lt(rightEndpt[position], key) || _eq(rightEndpt[position], key)) {
+					return rightEndpt;
+				// Neither: we're within the interval.
+				} else {
+					return interpolate(key);
 				}
 			}
 
